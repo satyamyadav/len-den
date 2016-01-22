@@ -1,5 +1,11 @@
 (function () {
 
+	$('.collapsible').collapsible({
+	  accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+	});
+
+	$('.modal-trigger').leanModal();
+
 	function timeStamp() {
 	// Create a date object with the current time
 	  var now = new Date();
@@ -29,10 +35,6 @@
 	// Return the formatted string
 	  return [date.join("/") , time.join(":") + " " + suffix];
 	};
-
-	$('.collapsible').collapsible({
-	  accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-	});
 
 var getData = function() {
 	var lenDenData = {};
@@ -91,6 +93,39 @@ var submitDena = function(uid, purpose, amount, data){
 };
 
 
+
+var addFriend = function(name, no, data){
+
+	var friendExists = function(name, no, data){
+		var exists = false;
+		data.friends.map(function(friend){
+			if (friend.name == name) {
+				exists = true;
+			}	
+		});
+		return exists;
+	};
+
+
+console.log(friendExists('vishal', 34, data));
+	var newfriend = {};
+	var friends = data.friends;
+	var friendExists = friendExists(name, no, data);
+
+	if (!(friendExists)) {
+		console.log(friendExists);
+		newfriend.name = name;
+		newfriend.mo = no;
+		newfriend.id = friends.length + 1;
+		friends.push(newfriend);
+		localStorage.setItem('lenDenData', JSON.stringify(data));
+		initlenDen(window.jQuery);
+
+	};
+
+};
+
+
 var initlenDen = function ($) {
 
 var data = getData();
@@ -99,6 +134,19 @@ var me = data.me;
 var friends = data.friends;
 var dena = data.dena;
 console.log('aaya  data: ', data, dena, friends, me);
+
+
+var $addFriendBtn = $('.add-friend-btn');
+
+$addFriendBtn.on('click', function(ev){
+	ev.preventDefault();
+	friendName = $('.friend-name').val();
+	friendMo = $('.friend-no').val();
+	if (friendName.length > 0) {
+		addFriend(friendName, friendMo, data);
+		
+	};	
+});
 
 var $dena = $('.dena');
 console.log($dena);
@@ -125,7 +173,8 @@ friends.forEach(function(friend){
 		+ '<li class="" >'
 		  + '<div class="dena-friend collapsible-header hoverable red lighten-5" data-uid="' + friend.id + ' ">'
 		  	+ '<i class="fa fa-user"></i>' 
-		  	+ friend.name + '<span class="right">' + total + '</span>' 
+		  	+ friend.name + '<span class="right">' + total + '</span>'
+		  	+'<a class="btn-floating green" href="intent://send/'+ friend.mo +'#Intent;scheme=smsto;package=com.whatsapp;text=hey!' + friend.name + ', I am trying to return your Rs. ' + total + ', as soon as posible ;action=android.intent.action.SENDTO;end" target="__blank" title="forum" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px); opacity: 0;"><i class="fa fa-whatsapp"></i></a>' 
 		  + '</div>'
       + '<div class="collapsible-body" style="display: none;">'
         + '<ul class="dena-friend-details collection">'
