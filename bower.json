@@ -1,0 +1,19 @@
+{
+  "name": "len-den",
+  "description": "a debit credit app for friends",
+  "main": "app.js",
+  "authors": [
+    "satyam yadav"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "len-den",
+  "version": "1.0.0",
+  "description": "a debit credit app for friends",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "satyam yadav",
+  "license": "MIT",
+  "dependencies": {
+    "bower": "^1.7.2"
+  }
+}
