@@ -171,7 +171,7 @@ friends.forEach(function(friend){
 		  + '<div class="dena-friend collapsible-header hoverable red lighten-5" data-uid="' + friend.id + ' ">'
 		  	+ '<i class="fa fa-user grey-text lighten-4"></i>' 
 		  	+ friend.name + '<span class="right">' + total + '</span>'
-		  	+'<a class=" left " href="intent://send/'+ parseInt(friend.mo) +'#Intent;scheme=smsto;package=com.whatsapp;text=hey!' + friend.name + ', I am trying to return your Rs. ' + total + ', as soon as posible ;action=android.intent.action.SENDTO;end" target="__blank"  ><i class="fa fa-whatsapp green-text"></i></a>' 
+		  	+'<a class=" left whatsapp-link" href="intent://send/'+ parseInt(friend.mo) +'#Intent;scheme=smsto;package=com.whatsapp;text=hey!' + friend.name + ', I am trying to return your Rs. ' + total + ', as soon as posible ;action=android.intent.action.SENDTO;end" target="__blank"  ><i class="fa fa-whatsapp green-text"></i></a>' 
 		  + '</div>'
       + '<div class="collapsible-body" style="display: none;">'
         + '<ul class="dena-friend-details collection">'
@@ -216,6 +216,11 @@ $denaFriend.on('click', function(el){
 		 '<li class="collection-item">total: <span class="right red-text lighten-2">' + total + '</span></li>'
 		+'');
 
+});
+
+var $whatsappLink = $('.whatsapp-link');
+$whatsappLink.on('click', function(ev){
+	ev.stopPropagation();
 });
 
 
