@@ -41,14 +41,11 @@ var getData = function() {
 	var me = {id:0, name: "satyam"}
 	var dena = [];
 	var friends = [
-		{id: 1, name: 'vishal'},
-		{id:2,  name: 'atul'}
+		{id: 1, name: 'satyam', mo: 7376867678}
 	]
 
 	var denaData = [
-		{id:0, uid: 1, timestamp: "23/10/2014", purpose: 'ola cab book kiya ', amount: 50},
-		{id:1, uid: 2, timestamp: "23/10/2014", purpose: 'break fast ', amount: 20},
-		{id:3, uid: 2, timestamp: "23/10/2014", purpose: 'movie ', amount: 200}
+		{id:0, uid: 1, date: timeStamp()[0], time: timeStamp()[1], purpose: 'Enjoy it', amount: 0}
 	]
 
 	lenDenData.me = me;
@@ -172,9 +169,9 @@ friends.forEach(function(friend){
 	$denaFrndList.append(''
 		+ '<li class="" >'
 		  + '<div class="dena-friend collapsible-header hoverable red lighten-5" data-uid="' + friend.id + ' ">'
-		  	+ '<i class="fa fa-user"></i>' 
+		  	+ '<i class="fa fa-user grey-text lighten-4"></i>' 
 		  	+ friend.name + '<span class="right">' + total + '</span>'
-		  	+'<a class="btn-floating green" href="intent://send/'+ friend.mo +'#Intent;scheme=smsto;package=com.whatsapp;text=hey!' + friend.name + ', I am trying to return your Rs. ' + total + ', as soon as posible ;action=android.intent.action.SENDTO;end" target="__blank" title="forum" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px); opacity: 0;"><i class="fa fa-whatsapp"></i></a>' 
+		  	+'<a class=" left " href="intent://send/'+ parseInt(friend.mo) +'#Intent;scheme=smsto;package=com.whatsapp;text=hey!' + friend.name + ', I am trying to return your Rs. ' + total + ', as soon as posible ;action=android.intent.action.SENDTO;end" target="__blank"  ><i class="fa fa-whatsapp green-text"></i></a>' 
 		  + '</div>'
       + '<div class="collapsible-body" style="display: none;">'
         + '<ul class="dena-friend-details collection">'
@@ -188,7 +185,7 @@ friends.forEach(function(friend){
         			+'<input class="input-field" id="dena-purpose' + friend.id + '" placeholder="purpose" type="text" />'
         		+'</div>'
         		+'<div class="col s2">'
-        			+'<div class="btn btn-add-dena" id="dena-add' + friend.id + '" data-uid="'+ friend.id +'">Add</div>'
+        			+'<a class="btn-floating  btn-add-dena" id="dena-add' + friend.id + '" data-uid="'+ friend.id +'"><i class="fa fa-plus"></i></a>'
         		+'</div>'
         	+'</div>'
       + '</div>'
@@ -231,9 +228,12 @@ $denaAddBtn.on('click', function(ev){
 	var uid = $this.data('uid');
 	var $denaAmount = $('#dena-amount' + uid );
 	var $denaPurpose = $('#dena-purpose' + uid );
-	var amount = $denaAmount.val();
-	var purpose = $denaPurpose = $denaPurpose.val();
-	submitDena(uid, purpose, amount, data);
+	var amount = parseInt($denaAmount.val());
+	var purpose = 'spends'
+	purpose = $denaPurpose.val();
+	if (amount > 0 ) {
+		submitDena(uid, purpose, amount, data);
+	};
 });
 
 

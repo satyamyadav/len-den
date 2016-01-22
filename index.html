@@ -12,6 +12,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 
 </head>
+
+<style type="text/css">
+  .col{
+    padding: 0px 0.2rem !important;
+  }
+</style>
+
 <body class="grey lighten-5">
 
 <div class="notify" style="display:none; width:100%; text-align:center; padding:15px; color:white; background-color:rgba(244,0,0,0.5); position:fixed; top:5px);z-index:10">loading...</div>
@@ -21,9 +28,9 @@
 <div class="col s12 m12 l6 dena">
 <nav>
   <div class="nav-wrapper">
-    <div class="col s12">
+    <div class="col s12" style="padding-left:25px !important; padding-right:25px !important">
       <a href="#!" class="">Dena</a>
-      <ul class="right hide-on-med-and-down">
+      <ul class="right">
         <li class="total-dena"></li>
         
         
@@ -43,7 +50,7 @@
 
 
 
-<div class="fixed-action-btn refresh-btn" style="bottom: 45px; right: 24px;">
+<div class="fixed-action-btn " style="bottom: 45px; right: 24px;">
   <a class="btn-floating btn-large waves-effect modal-trigger" href="#add-friend-modal"><i class="fa fa-user"></i></a>
 </div>
 
@@ -56,7 +63,9 @@
 <div id="add-friend-modal" class="modal bottom-sheet">
   <div class="modal-content">
     
-    <p>Add friends <a href="#!" class="right modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    <p>Add friends <a href="#!" class="right modal-action modal-close waves-effect waves-green btn-flat">
+      <i class="fa fa-close"></i>
+    </a>
     </p>
     <div class="row">
       <div class="col s5">
@@ -68,7 +77,9 @@
       </div>
       
       <div class="col s2">
-        <a href="#!" class="add-friend-btn waves-effect waves-green btn-flat">Add</a>
+        <a href="#!" class="add-friend-btn waves-effect waves-green btn-flat">
+          <i class="fa fa-check"></i>
+        </a>
         
       </div>
     </div>
