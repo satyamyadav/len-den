@@ -168,7 +168,7 @@ friends.forEach(function(friend){
 	});
 
 	var msg = 'hey!' + friend.name + ', I am trying to return your Rs. ' + total + ', as soon as posible';
-
+ msg = "hello";
 	$denaFrndList.append(''
 		+ '<li class="" >'
 		  + '<div class="dena-friend collapsible-header hoverable red lighten-5" data-uid="' + friend.id + ' ">'
