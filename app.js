@@ -11,7 +11,7 @@
 	  var now = new Date();
 
 	// Create an array with the current month, day and time
-	  var date = [ now.getMonth() + 1, now.getDate(), now.getFullYear() ];
+	  var date = [ now.getDate(), now.getMonth() + 1, now.getFullYear() ];
 
 	// Create an array with the current hour, minute and second
 	  var time = [ now.getHours(), now.getMinutes(), now.getSeconds() ];
@@ -184,20 +184,11 @@ friends.forEach(function(friend){
         + '<ul class="dena-friend-details collection">'
           + '<li>ola ola</li>'
         + '</ul> '
-        	+'<div class="row">'
-        		+'<div class="col s3">'
-        			+'<input class="input-field" id="dena-amount' + friend.id +'" placeholder="amount in Rs." type="number"/>'
-        		+'</div>'
-        		+'<div class="col s7">'
-        			+'<input class="input-field" id="dena-purpose' + friend.id + '" placeholder="purpose" type="text" />'
-        		+'</div>'
-        		+'<div class="col s2">'
-        			+'<a class="btn-floating  btn-add-dena" id="dena-add' + friend.id + '" data-uid="'+ friend.id +'"><i class="fa fa-plus"></i></a>'
-        		+'</div>'
-        	+'</div>'
       + '</div>'
     + '</li>')
 });
+
+Materialize.showStaggeredList($denaFrndList);
 
 var $denaFriend = $('.dena-friend');
 

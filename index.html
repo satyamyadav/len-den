@@ -26,10 +26,10 @@
 
 <div class="row">
 
-<div class="col s12 m12 l6 dena">
+<div class="dena">
 <nav>
   <div class="nav-wrapper">
-    <div class="col s12" style="padding-left:25px !important; padding-right:25px !important">
+    <div class="col col s12 m12 l12 " style="padding-left:25px !important; padding-right:25px !important">
       
       <a href="#!" class="">Dena</a>
       <ul class="right">
@@ -42,25 +42,34 @@
   </div>
 </nav>
   
-
+<div class="col s12 m12 l12 ">
+  
 <ul class="collapsible collapsible-accordion dena-friend-list" data-collapsible="accordion">
         
 </ul>
 </div>
-  </div>
+</div>
+</div>
 
 
-<div class="add-dena-form" data-uid="" style="display:none; width:100%; text-align:center; padding:10px; color:white; background-color:rgba(244,0,0,0.5); position:fixed; bottom:0px;z-index:998">
+<div class="add-dena-form grey lighten-2" data-uid="" style="display:none; width:100%; padding-top:10px; color:white; position:fixed; bottom:0px;z-index:998">
   <div class="row">
-    <div class="col s3">
-      <input class="input-field" id="dena-amount" placeholder="amount in Rs." type="number"/>
+    <form>
+      
+    <div class="col s3 input-field">
+      <input id="dena-amount"  type="number"/>
+      <label for="dena-amount">Rs.</label>
+
     </div>
-    <div class="col s6">
-      <input class="input-field" id="dena-purpose" placeholder="purpose" type="text" />
+    <div class="col s6 input-field">
+      <input class=" validate" id="dena-purpose"  type="text" />
+      <label for="dena-purpose">Purpose</label>
+
     </div>
-    <div class="col s3">
+    <div class="col s3" style="padding-top:10px !important">
       <a class=" btn" id="dena-add" data-uid="">Add</a>
     </div>
+    </form>
   </div>
 </div>
 
@@ -84,20 +93,43 @@
     </a>
     </div>
     <div class="row">
-      <div class="col s5">
-        <input class="input-field friend-name" type="text" placeholder="friend's name">   
-      </div>
       
+        
+          <form class="">
+            <div class="">
+      <!-- <div class="col s5">
+        <input class="input-field friend-name" id="m1" type="text">
+         <label for="m1">Friend's name</label>   
+      </div> -->
+              <div class="input-field col s5">
+                <input id="icon_prefix" type="text" class="validate friend-name">
+                <label for="icon_prefix">First Name</label>
+              </div>
+      
+
+<!-- 
       <div class="col s5">
         <input class="input-field friend-no" type="number" placeholder="mobile number">   
       </div>
+       -->
+              <div class="input-field col s4">
+                <input id="icon_telephone" type="number" class="validate friend-no">
+                <label for="icon_telephone">Phone</label>
+              </div>
       
+
+
       <div class="col s2">
         <a href="#!" class="add-friend-btn waves-effect waves-green btn-flat">
           <i class="fa fa-check green-text"></i>
         </a>
         
       </div>
+
+
+
+            </div>
+          </form>
     </div>
   </div>
 
