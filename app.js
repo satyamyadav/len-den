@@ -166,12 +166,15 @@ friends.forEach(function(friend){
 			total = total + parseInt(item.amount);
 		};
 	});
+
+	var msg = 'hey!' + friend.name + ', I am trying to return your Rs. ' + total + ', as soon as posible';
+
 	$denaFrndList.append(''
 		+ '<li class="" >'
 		  + '<div class="dena-friend collapsible-header hoverable red lighten-5" data-uid="' + friend.id + ' ">'
 		  	+ '<i class="fa fa-user grey-text lighten-4"></i>' 
 		  	+ friend.name + '<span class="right">' + total + '</span>'
-		  	+'<a class=" left whatsapp-link" href="intent://send/'+ parseInt(friend.mo) +'#Intent;scheme=smsto;package=com.whatsapp;text=hey!' + friend.name + ', I am trying to return your Rs. ' + total + ', as soon as posible ;action=android.intent.action.SENDTO;end" target="__blank"  ><i class="fa fa-whatsapp green-text"></i></a>' 
+		  	+'<a class=" left whatsapp-link" href="intent://send/'+ parseInt(friend.mo) +'#Intent;scheme=smsto;package=com.whatsapp;text=' + JSON.stringify(msg) + ';action=android.intent.action.SENDTO;end" target="__blank"  ><i class="fa fa-whatsapp green-text"></i></a>' 
 		  + '</div>'
       + '<div class="collapsible-body" style="display: none;">'
         + '<ul class="dena-friend-details collection">'
