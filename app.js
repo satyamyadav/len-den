@@ -36,6 +36,17 @@
 	  return [date.join("/") , time.join(":") + " " + suffix];
 	};
 
+	var toast = {};
+	toast.notify = function(msg){
+		Materialize.toast(msg, 4000, 'green lighten-1');
+	};
+	toast.warn = function(msg){
+
+		Materialize.toast(msg, 4000, 'red lighten-1');
+	};
+
+	toast.notify('welcome !!');
+
 var getData = function() {
 	var lenDenData = {};
 	var me = {id:0, name: "satyam"}
@@ -67,7 +78,6 @@ var getData = function() {
 
 
 var submitDena = function(uid, purpose, amount, data){
-	console.log(uid, purpose, amount);
 	var dena = data.dena;
 	var id = dena.length + 1;
 
@@ -81,9 +91,33 @@ var submitDena = function(uid, purpose, amount, data){
 
 	dena.push(formData);
 
-	console.log('addin data: ', data, dena);
 	localStorage.setItem('lenDenData', JSON.stringify(data));
 	//location.reload();
+	toast.notify('Dena added succesfully !');
+	initlenDen(window.jQuery);
+	$('.add-dena-form').hide();
+	$('.friend-modal-btn').show();
+
+
+
+};
+
+var deleteDena = function(id){
+	var data = getData();
+	var dena = data.dena;
+	var newDena = [];
+
+	dena.map(function(item){
+		if (item.id != id) {
+			newDena.push(item);
+		};
+	});
+
+	data.dena = newDena;
+	localStorage.setItem('lenDenData', JSON.stringify(data));
+	//location.reload();
+	toast.warn('Dena deleted succesfully !');
+	
 	initlenDen(window.jQuery);
 	$('.add-dena-form').hide();
 	$('.friend-modal-btn').show();	
@@ -106,21 +140,24 @@ var addFriend = function(name, no, data){
 	};
 
 
-console.log(friendExists('vishal', 34, data));
 	var newfriend = {};
 	var friends = data.friends;
 	var friendExists = friendExists(name, no, data);
 
 	if (!(friendExists)) {
-		console.log(friendExists);
 		newfriend.name = name;
 		newfriend.mo = no;
 		newfriend.id = friends.length + 1;
 		friends.push(newfriend);
 		localStorage.setItem('lenDenData', JSON.stringify(data));
+		toast.notify('You added new friend !');
 		initlenDen(window.jQuery);
 		$('.add-dena-form').hide();
-		$('.friend-modal-btn').show();	
+		$('.friend-modal-btn').show();
+
+
+	} else {
+		toast.warn('You have already added'+ name + 'in your friends');
 
 	};
 
@@ -134,7 +171,6 @@ var data = getData();
 var me = data.me;
 var friends = data.friends;
 var dena = data.dena;
-console.log('aaya  data: ', data, dena, friends, me);
 
 
 var $addFriendBtn = $('.add-friend-btn');
@@ -143,6 +179,7 @@ $addFriendBtn.on('click', function(ev){
 	ev.preventDefault();
 	friendName = $('.friend-name').val();
 	friendMo = $('.friend-no').val();
+	
 	if (friendName.length > 0) {
 		addFriend(friendName, friendMo, data);
 		
@@ -150,7 +187,6 @@ $addFriendBtn.on('click', function(ev){
 });
 
 var $dena = $('.dena');
-console.log($dena);
 var totalDena = 0;
 dena.map(function(item) {
 	totalDena = totalDena + parseInt(item.amount);
@@ -159,11 +195,9 @@ dena.map(function(item) {
 $('.total-dena').html('Rs. ' + totalDena);
 
 var $denaFrndList = $('.dena-friend-list');
-console.log($denaFrndList);
 $denaFrndList.empty();
 
 friends.forEach(function(friend){
-	console.log(friend.name);
 	var total = 0;
 	dena.map(function(item){
 		if (item.uid == friend.id) {
@@ -174,7 +208,7 @@ friends.forEach(function(friend){
 	var msg = 'hey!' + friend.name + ', I am trying to return your Rs. ' + total + ', as soon as posible';
  msg = "hello";*/
 	$denaFrndList.append(''
-		+ '<li class="" >'
+		+ '<li class="dismissable" >'
 		  + '<div class="dena-friend collapsible-header hoverable red lighten-5" data-uid="' + friend.id + ' ">'
 		  	+ '<i class="fa fa-user grey-text lighten-4"></i>' 
 		  	+ friend.name + '<span class="right">' + total + '</span>'
@@ -211,19 +245,31 @@ $denaFriend.on('click', function(el){
 	$details.html('');
 	var total = 0;
 	dena.map(function(item){
-		console.log(item);
 		if (item.uid == uid) {
-			console.log('details:', $details);
-			$details.append('<li class="collection-item grey lighten-3"> <div class="left"><small style="margin-right:5px"> ' + item.date + '</small>'
-				+ '<small style="margin-right:5px"> ' + /*item.time*/ '</small>' +'</div><span class="center">' + item.purpose + '</span><span class="right">' + item.amount + '</span></li>');
+			$details.append('<li class="collection-item grey lighten-3 dena-details" data-id="' + item.id + '"> <div class="left"><small style="margin-right:5px"> ' + item.date + '</small>'
+				+ '<small style="margin-right:5px"> ' + /*item.time*/ '</small>' +'</div><span class="center">' + item.purpose + '</span>' 
+				+ '<div class=" secondary-content right" ><i class="fa fa-trash grey-text dena-paid" data-id="' + item.id + '"></i></div>' 
+				+ '<span class="right" style="margin-right:10px">' + item.amount + '</span>'
+				+'</li>');
 			total = total + parseInt(item.amount);
 		};
 		var details = item.uid;
-		console.log(total);
 	});
 	$details.append(''+
-		 '<li class="collection-item">total: <span class="right red-text lighten-2">' + total + '</span></li>'
+		 '<li class="collection-item">total: '
+		 + '<div class="dena-total-paid secondary-content right" data-uid="' + uid + '"><i class="fa fa-trash grey-text"></i></div>' 
+		 +'<span class="right red-text lighten-2"  style="margin-right:10px">' + total + '</span>'
+		 +'</li>'
 		+'');
+
+	var $denaPaid = $('.dena-paid');
+	$denaPaid.on('click', function(ev){
+		ev.preventDefault();
+		var denaId = $(this).data('id');
+		deleteDena(denaId);
+	});
+
+
 
 });
 
@@ -234,10 +280,9 @@ $whatsappLink.on('click', function(ev){
 
 
 
-$denaAddBtn = $('#dena-add');
+var $denaAddBtn = $('#dena-add');
 $denaAddBtn.on('click', function(ev){
 	ev.preventDefault();
-	console.log('click');
 	var $this = $(this);
 	var uid = $this.data('uid');
 	var $denaAmount = $('#dena-amount');
@@ -249,7 +294,6 @@ $denaAddBtn.on('click', function(ev){
 		submitDena(uid, purpose, amount, data);
 	};
 });
-
 
 
 
