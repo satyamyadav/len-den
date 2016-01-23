@@ -85,6 +85,8 @@ var submitDena = function(uid, purpose, amount, data){
 	localStorage.setItem('lenDenData', JSON.stringify(data));
 	//location.reload();
 	initlenDen(window.jQuery);
+	$('.add-dena-form').hide();
+	$('.friend-modal-btn').show();	
 
 
 };
@@ -117,6 +119,8 @@ console.log(friendExists('vishal', 34, data));
 		friends.push(newfriend);
 		localStorage.setItem('lenDenData', JSON.stringify(data));
 		initlenDen(window.jQuery);
+		$('.add-dena-form').hide();
+		$('.friend-modal-btn').show();	
 
 	};
 
@@ -166,9 +170,9 @@ friends.forEach(function(friend){
 			total = total + parseInt(item.amount);
 		};
 	});
-
+/*
 	var msg = 'hey!' + friend.name + ', I am trying to return your Rs. ' + total + ', as soon as posible';
- msg = "hello";
+ msg = "hello";*/
 	$denaFrndList.append(''
 		+ '<li class="" >'
 		  + '<div class="dena-friend collapsible-header hoverable red lighten-5" data-uid="' + friend.id + ' ">'
@@ -200,7 +204,18 @@ var $denaFriend = $('.dena-friend');
 $denaFriend.on('click', function(el){
 	el.preventDefault();
 	var $this = $(this);
+	//$('.friend-modal-btn').toggle();
+	//$('.add-dena-form').toggle();
+	if ($this.parent().hasClass('active')) {
+		$('.add-dena-form').hide();
+		$('.friend-modal-btn').show();		
+	} else {
+		$('.friend-modal-btn').hide();
+		$('.add-dena-form').show();
+	};
 	var uid = $this.data('uid');
+	//$('.add-dena-form').data('uid') = uid;
+	$('#dena-add').data('uid', uid);
 	var $details = $('.dena-friend-details');
 	$details.html('');
 	var total = 0;
@@ -228,14 +243,14 @@ $whatsappLink.on('click', function(ev){
 
 
 
-$denaAddBtn = $('.btn-add-dena');
+$denaAddBtn = $('#dena-add');
 $denaAddBtn.on('click', function(ev){
 	ev.preventDefault();
 	console.log('click');
 	var $this = $(this);
 	var uid = $this.data('uid');
-	var $denaAmount = $('#dena-amount' + uid );
-	var $denaPurpose = $('#dena-purpose' + uid );
+	var $denaAmount = $('#dena-amount');
+	var $denaPurpose = $('#dena-purpose');
 	var amount = parseInt($denaAmount.val());
 	var purpose = 'spends'
 	purpose = $denaPurpose.val();
