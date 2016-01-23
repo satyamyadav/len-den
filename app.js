@@ -5,6 +5,9 @@
 	});
 
 	$('.modal-trigger').leanModal();
+	
+  // Initialize collapse button
+  $(".button-collapse").sideNav();
 
 	function timeStamp() {
 	// Create a date object with the current time
@@ -39,15 +42,23 @@
 	var toast = {
 
 		notify: function(msg){
-			return Materialize.toast(msg, 4000, 'green lighten-1');
+			$('#notify').html(msg).slideDown();
+			setTimeout(function(){
+				$('#notify').slideUp();
+			}, 4000);
+			//return Materialize.toast(msg, 4000, 'green lighten-1');
 			
 		},
 		warn: function(msg){
-
-			return Materialize.toast(msg, 4000, 'red lighten-1');
+			$('#warn').html(msg).slideDown();
+			setTimeout(function(){
+				$('#warn').slideUp();
+			}, 4000);
+			//return Materialize.toast(msg, 4000, 'red lighten-1');
 			
 		}
 	};
+
 
 	toast.notify('welcome !!');
 
@@ -97,7 +108,7 @@ var submitDena = function(uid, purpose, amount, data){
 
 	localStorage.setItem('lenDenData', JSON.stringify(data));
 	//location.reload();
-	//toast.notify('Dena added succesfully !');
+	toast.notify('Dena added succesfully !');
 	initlenDen(window.jQuery);
 	$('.add-dena-form').hide();
 	$('.friend-modal-btn').show();
@@ -120,7 +131,7 @@ var deleteDena = function(id){
 	data.dena = newDena;
 	localStorage.setItem('lenDenData', JSON.stringify(data));
 	//location.reload();
-	toast.warn('Dena deleted succesfully !');
+	toast.notify('Dena deleted succesfully !');
 	
 	initlenDen(window.jQuery);
 	$('.add-dena-form').hide();
@@ -212,7 +223,7 @@ friends.forEach(function(friend){
 	var msg = 'hey!' + friend.name + ', I am trying to return your Rs. ' + total + ', as soon as posible';
  msg = "hello";*/
 	$denaFrndList.append(''
-		+ '<li class="dismissable" >'
+		+ '<li class="" >'
 		  + '<div class="dena-friend collapsible-header hoverable red lighten-5" data-uid="' + friend.id + ' ">'
 		  	+ '<i class="fa fa-user grey-text lighten-4"></i>' 
 		  	+ friend.name + '<span class="right">' + total + '</span>'
@@ -252,7 +263,7 @@ $denaFriend.on('click', function(el){
 	var total = 0;
 	dena.map(function(item){
 		if (item.uid == uid) {
-			$details.append('<li class="collection-item grey lighten-3 dena-details" data-id="' + item.id + '"> <div class="left"><small style="margin-right:5px"> ' + item.date + '</small>'
+			$details.append('<li class="dismissable collection-item grey lighten-3 dena-details" data-id="' + item.id + '"> <div class="left"><small style="margin-right:5px"> ' + item.date + '</small>'
 				+ '<small style="margin-right:5px"> ' + /*item.time*/ '</small>' +'</div><span class="center">' + item.purpose + '</span>' 
 				+ '<div class=" secondary-content right" ><i class="fa fa-trash grey-text dena-paid" data-id="' + item.id + '"></i></div>' 
 				+ '<span class="right" style="margin-right:10px">' + item.amount + '</span>'

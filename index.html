@@ -22,7 +22,9 @@
 
 <body class="grey lighten-4">
 
-<div class="notify" style="display:none; width:100%; text-align:center; padding:15px; color:white; background-color:rgba(244,0,0,0.5); position:fixed; top:5px);z-index:10">loading...</div>
+<div id="warn" style="display:none; width:100%; text-align:center; padding:15px; color:white; background-color:rgba(244,0,0,0.5); position:fixed; top:5px);z-index:10">loading...</div>
+
+<div  id="notify" style="display:none; width:100%; text-align:center; padding:15px; color:white; background-color:rgba(0, 244, 210, 0.5); position:fixed; top:5px);z-index:10">loading...</div>
 
 <div class="row">
 
@@ -30,8 +32,17 @@
 <nav>
   <div class="nav-wrapper">
     <div class="col col s12 m12 l12 " style="padding-left:25px !important; padding-right:25px !important">
+      <ul>
+        <li>
+          <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="fa fa-ellipsis-v"></i></a>
+          
+        </li>
+        <li>
+          <a href="#!" class="">Dena</a>
+          
+        </li>
+      </ul>
       
-      <a href="#!" class="">Dena</a>
       <ul class="right">
         <li class="total-dena"></li>
         
@@ -40,6 +51,17 @@
 
     </div>
   </div>
+
+  <div id="nav-mobile" class="side-nav collection" style="border: 0px; left: 0px; background: rgb(210, 234, 240);">
+    <!-- <a class="waves-effect modal-trigger collection-item" href="/forum.html">Forum</a>
+    <a class="waves-effect modal-trigger collection-item" href="#modal-join-us">Join Us</a>
+ -->    <!-- <a href="#!" class="collection-item">Alvin</a>
+    <a href="#!" class="collection-item active">Alvin</a>
+    <a href="#!" class="collection-item">Alvin</a>
+    <a href="#!" class="collection-item">Alvin</a> -->
+  </div>
+
+
 </nav>
   
 <div class="col s12 m12 l12 ">
