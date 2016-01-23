@@ -36,13 +36,17 @@
 	  return [date.join("/") , time.join(":") + " " + suffix];
 	};
 
-	var toast = {};
-	toast.notify = function(msg){
-		Materialize.toast(msg, 4000, 'green lighten-1');
-	};
-	toast.warn = function(msg){
+	var toast = {
 
-		Materialize.toast(msg, 4000, 'red lighten-1');
+		notify: function(msg){
+			return Materialize.toast(msg, 4000, 'green lighten-1');
+			
+		},
+		warn: function(msg){
+
+			return Materialize.toast(msg, 4000, 'red lighten-1');
+			
+		}
 	};
 
 	toast.notify('welcome !!');
@@ -93,7 +97,7 @@ var submitDena = function(uid, purpose, amount, data){
 
 	localStorage.setItem('lenDenData', JSON.stringify(data));
 	//location.reload();
-	toast.notify('Dena added succesfully !');
+	//toast.notify('Dena added succesfully !');
 	initlenDen(window.jQuery);
 	$('.add-dena-form').hide();
 	$('.friend-modal-btn').show();
@@ -157,7 +161,7 @@ var addFriend = function(name, no, data){
 
 
 	} else {
-		toast.warn('You have already added'+ name + 'in your friends');
+		toast.warn('You have already added  '+ name + '  in your friends');
 
 	};
 
@@ -220,6 +224,8 @@ friends.forEach(function(friend){
         + '</ul> '
       + '</div>'
     + '</li>')
+
+
 });
 
 Materialize.showStaggeredList($denaFrndList);
@@ -292,6 +298,8 @@ $denaAddBtn.on('click', function(ev){
 	purpose = $denaPurpose.val();
 	if (amount > 0 ) {
 		submitDena(uid, purpose, amount, data);
+		//toast.notify('Dena added succesfully !');
+
 	};
 });
 
