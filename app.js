@@ -1,4 +1,5 @@
 (function () {
+  $(".button-collapse").sideNav();
 
 	$('.collapsible').collapsible({
 	  accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
@@ -7,7 +8,6 @@
 	$('.modal-trigger').leanModal();
 	
   // Initialize collapse button
-  $(".button-collapse").sideNav();
    // Show sideNav
   //$('.button-collapse').sideNav('show');
   // Hide sideNav
@@ -93,21 +93,21 @@
 
 	var initStore = function() {
 		var lenDenData = {};
-		var me = {id:0, name: "satyam"}
+		var me = {id:0, name: ""}
 		var dena = [];
 		var friends = [
-			{id: 1, name: 'satyam', mo: 7376867678},
-			{id: 2, name: 'vishal', mo: 7376867678}
+			/*{id: 1, name: 'satyam', mo: 7376867678},
+			{id: 2, name: 'vishal', mo: 7376867678}*/
 		]
 
 		var denaData = [
-			{id:0, uid: 1, date: timeStamp()[0], time: timeStamp()[1], purpose: 'Enjoy it', amount: 0}
+			/*{id:0, uid: 1, date: timeStamp()[0], time: timeStamp()[1], purpose: 'Enjoy it', amount: 0}*/
 		]
 
 		var lenaData = [
-			{id:0, uid: 2, date: timeStamp()[0], time: timeStamp()[1], purpose: 'lea re it', amount: 0},
+		/*	{id:0, uid: 2, date: timeStamp()[0], time: timeStamp()[1], purpose: 'lea re it', amount: 0},
 			{id:1, uid: 1, date: timeStamp()[0], time: timeStamp()[1], purpose: 'lea re it', amount: 50},
-			{id:1, uid: 2, date: timeStamp()[0], time: timeStamp()[1], purpose: 'lea re it', amount: 50}
+			{id:1, uid: 2, date: timeStamp()[0], time: timeStamp()[1], purpose: 'lea re it', amount: 50}*/
 		]
 
 		lenDenData.me = me;
