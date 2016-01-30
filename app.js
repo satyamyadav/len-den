@@ -58,7 +58,7 @@
 			 //Materialize.toast(msg, 4000, 'teal lighten-1');
 			$('#notify').hide();
 			$('#warn').hide();
-			$('#notify').html(msg).slideDown();
+			$('#notify').html(msg).animate({top: '5', opacity: '1'},500).slideDown();
 			setTimeout(function(){
 				$('#notify').animate({top: '-50', opacity: '.3'},1000).slideUp();
 			}, 3000);
@@ -73,7 +73,7 @@
 			//Materialize.toast(msg, 4000, 'red lighten-1');
 			$('#notify').hide();
 			$('#warn').hide();
-			$('#warn').html(msg).slideDown();
+			$('#warn').html(msg).animate({top: '5', opacity: '1'},500).slideDown();
 			setTimeout(function(){
 				$('#warn').animate({top: '-50', opacity: '.3'},1000).slideUp();
 			}, 3000);
