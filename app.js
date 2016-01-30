@@ -498,6 +498,13 @@ var main = function($){
 		window.location.reload();
 	});
 
+	$('.lock-app').on('click', function(ev){
+		ev.preventDefault();
+	  $('#locked').parent().show();
+
+		window.location.reload();
+	});
+
 
 
 
