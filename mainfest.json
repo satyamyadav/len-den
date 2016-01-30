@@ -1,0 +1,9 @@
+{
+"short_name": "len-den",
+"name": "len-den",
+"start_url": "/",
+"background_color": "#d2d2d2",
+"theme_color": "#dedede",
+"display": "fullscreen",
+"orientation": "portrait"
+}
