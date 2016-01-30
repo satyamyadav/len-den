@@ -481,6 +481,8 @@ var main = function($){
 		purpose = $purpose.val();
 		if (amount > 0 ) {
 			submitPurpose(uid, purpose, amount, type);
+			$purpose.val() = '';
+			$amount.val() = '';
 			//toast.notify('Dena added succesfully !');
 
 		};
