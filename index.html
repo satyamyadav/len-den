@@ -17,6 +17,17 @@
     padding: 0px 0.2rem !important;
   }
 
+  .friend-details {
+    margin:  0.5rem 1rem !important;
+  }
+
+  .add-form {
+    border-top: 1px solid #ddd;
+    box-shadow: 0 2px 25px 0 rgba(0,0,0,0.45),0 2px 10px 0 rgba(0,0,0,0.12);
+  }
+
+  
+  
 </style>
 
 <body class="grey lighten-4">
@@ -27,23 +38,26 @@
 
 <div class="row">
 
-<div class="app" data-type="dena">
 <nav>
   <div class="nav-wrapper">
-    <div class="col col s12 m12 l12 " style="padding-left:25px !important; padding-right:25px !important">
+    <div class="col col s12 m12 l12 " style="padding-left:5px !important; padding-right:25px !important">
       <ul>
         <li>
-          <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="fa fa-ellipsis-v"></i></a>
+          <a href="#" data-activates="nav-mobile" class="button-collapse" style="display:block"><i class="fa fa-bars"></i></a>
+          
+        </li>
+        <li class="active">
+          <a href="#!" class="waves-effect toggle-app dena ">Dena</a>
           
         </li>
         <li>
-          <a href="#!" class="">Dena</a>
+          <a href="#!" class="waves-effect toggle-app lena">Lena</a>
           
         </li>
       </ul>
       
-      <ul class="right ">
-        <li class="total-dena"></li>
+      <ul class="right">
+        <li class="grand-total"></li>
         
         
       </ul>
@@ -52,29 +66,45 @@
   </div>
 
   <div id="nav-mobile" class="side-nav collection" style="border: 0px; left: 0px; background: rgb(210, 234, 240);">
-    <!-- <a class="waves-effect modal-trigger collection-item" href="/forum.html">Forum</a>
-    <a class="waves-effect modal-trigger collection-item" href="#modal-join-us">Join Us</a>
- -->    <!-- <a href="#!" class="collection-item">Alvin</a>
-    <a href="#!" class="collection-item active">Alvin</a>
-    <a href="#!" class="collection-item">Alvin</a>
-    <a href="#!" class="collection-item">Alvin</a> -->
+    <a class="waves-effect collection-item nav-mobile-close" ><i class="fa fa-chevron-left fa-2x right"></i></a>
+    <a href="#!" class="waves-effect collection-item reset-app">Reset App</a>
+    <a href="#help-modal" class="waves-effect collection-item modal-trigger">Help</a>
+    <a href="#about-modal" class="waves-effect collection-item modal-trigger">About</a>
   </div>
 
 
 </nav>
+<div id="app" data-type="dena" >
   
-<div class="col s12 m12 l12 ">
+  <div class="col s12 m12 l12 ">
   
-<ul class="collapsible collapsible-accordion friend-list" data-collapsible="accordion">
-        
-</ul>
-</div>
-</div>
+    <ul class="collapsible collapsible-accordion friend-list" data-collapsible="accordion">
+            
+    </ul>
+  </div>
+  <div class="col s12 grey-text lighten-4">
+    <h5> help</h5>
+    <p>
+      start by adding a friend by clicking the <i class="fa fa-user"></i> on bottom left corner of screen
+    </p>
+    <p>len den (debit-credit) is a app to track the money you have to pay to your friends and you have lended to your friends</p>
+    <p>
+      dena: friends lended you money and you have to pay. (theme: red) <br/>
+      lena: friends will pay you money you lended to them. (theme: green) 
+    </p>
+    <p>
+      to add lena or dena you have to click your frends name you already added and add from the form over bottom of your screen 
+    </p>
+  </div>
 </div>
 
 
-<div class="add-form white" data-uid="" style="display:none; width:100%; padding-top:10px;  position:fixed; bottom:0px;z-index:998">
-  <div class="row">
+
+</div>
+
+
+<div class="add-form red lighten-5" style="display:none; width:100%; padding-top:5px;  position:fixed; bottom:0px;z-index:998">
+  <div class="row" style="margin-bottom:0">
     <form>
       
     <div class="col s3 input-field">
@@ -88,7 +118,7 @@
 
     </div>
     <div class="col s3" style="padding-top:10px !important">
-      <a class=" btn" id="add-purpose" data-uid="">Add</a>
+      <a class=" btn-flat red lighten-4" id="add-purpose" data-uid="">Add</a>
     </div>
     </form>
   </div>
@@ -115,31 +145,18 @@
     </div>
     <div class="row">
       
-        
           <form class="">
             <div class="">
-      <!-- <div class="col s5">
-        <input class="input-field friend-name" id="m1" type="text">
-         <label for="m1">Friend's name</label>   
-      </div> -->
               <div class="input-field col s5">
                 <input id="icon_prefix" type="text" class="validate friend-name">
                 <label for="icon_prefix">First Name</label>
               </div>
       
-
-<!-- 
-      <div class="col s5">
-        <input class="input-field friend-no" type="number" placeholder="mobile number">   
-      </div>
-       -->
               <div class="input-field col s4">
                 <input id="icon_telephone" type="number" class="validate friend-no">
                 <label for="icon_telephone">Phone</label>
               </div>
       
-
-
       <div class="col s2">
         <a href="#!" class="add-friend-btn waves-effect waves-green btn-flat">
           <i class="fa fa-check green-text"></i>
@@ -147,13 +164,52 @@
         
       </div>
 
-
-
             </div>
           </form>
     </div>
   </div>
 
+</div>
+
+
+<div id="help-modal" class="modal ">
+  <div class="modal-header">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat"><i class="fa fa-close"></i></a>
+  </div>
+  <div class="modal-content">
+    <h5> help</h5>
+    <p>
+      start by adding a friend by clicking the <i class="fa fa-user"></i> on bottom left corner of screen
+    </p>
+    <p>len den (debit-credit) is a app to track the money you have to pay to your friends and you have lended to your friends</p>
+    <p>
+      dena: friends lended you money and you have to pay. (theme: red) <br/>
+      lena: friends will pay you money you lended to them. (theme: green) 
+    </p>
+    <p>
+      to add lena or dena you have to click your frends name you already added and add from the form over bottom of your screen 
+    </p>
+  </div>
+</div>
+
+<div id="about-modal" class="modal ">
+  <div class="modal-header">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat"><i class="fa fa-close"></i></a>
+  </div>
+  <div class="modal-content">
+    
+    <p>A jquery and localStorage based app</p>
+    <p><a href="https://github.com/satyamyadav/len-den">you may contribute <i class="fa fa-github"></i></a></p>    
+    <p> "to-do app" is "Hello World" of web development and so I thought of something more than todo </p>
+    <h4>next learning technologies:</h4>
+    <u>
+      <li>making it progressive with service workers to work offline (using localStorage , no backend service)</li>
+      <li>redux-react</li>
+      <li>react-native</li>
+      <li>meteor</li>
+      <li>ionic</li>
+    </u>
+  </div>
 </div>
 
 
