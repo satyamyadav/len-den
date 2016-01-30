@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
   <title>Len-Den</title>
   <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+  <link href="patternLock.css"  rel="stylesheet" type="text/css" />
+  <script src="patternLock.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
@@ -19,7 +21,7 @@
     <meta property="og:type" content="website"/>
     <meta property="og:site_name" content="len-den "/>
     <meta property="og:image" content=""/>
-    <meta property="og:description" content="A app to list and calculate lended money"/>
+    <meta property="og:description" content="A app to track your len-den easily | A app without signup and profile"/>
 
     
     
@@ -56,9 +58,14 @@
 
 <body class="grey lighten-4">
 
-<div id="warn" style="display:none; width:100%; text-align:center; padding:15px; color:white; background-color:rgba(244,0,0,0.5); position:fixed; top:5px);z-index:10">loading...</div>
+<div id="warn" class="red lighten-1 white-text" style="display:none; width:90%; text-align:center; padding:15px; position:fixed; top:5px;z-index:10; margin-left:5%;margin-right:5%">loading...</div>
 
-<div  id="notify" style="display:none; width:100%; text-align:center; padding:15px; color:white; background-color:rgba(0, 244, 210, 0.5); position:fixed; top:5px);z-index:10">loading...</div>
+<div  id="notify" class="teal lighten-1 white-text" style="display:none; width:90%; text-align:center; padding:15px;position:fixed; top:5px;z-index:10; margin-left:5%;margin-right:5%">loading...</div>
+
+<div id="pattern-screen" style="position:fixed;width:100%;height:100%;z-index:999;background:rgba(0,0,0,0.9);padding:15px">
+  <div id="pattern-msg" class="grey-text lighten-4 text-center"><p>Please draw your pattern to unlock</p></div>
+  <div id="locked"></div>
+</div>
 
 <div class="row">
 

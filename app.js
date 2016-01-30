@@ -1,6 +1,6 @@
 (function () {
   $(".button-collapse").sideNav();
-
+  
 	$('.collapsible').collapsible({
 	  accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
 	});
@@ -18,12 +18,6 @@
   	$('.button-collapse').sideNav('hide');
   });
 
-  $('.reset-app').on('click', function(ev){
-  	ev.preventDefault();
-  	$(this).html('working...');
-  	localStorage.removeItem('lenDenData');
-  	window.location.reload();
-  });
         
 
 	function timeStamp() {
@@ -56,31 +50,33 @@
 	  return [date.join("/") , time.join(":") + " " + suffix];
 	};
 
+
+
 	var toast = {
 
 		notify: function(msg){
+			 //Materialize.toast(msg, 4000, 'teal lighten-1');
 			$('#notify').hide();
 			$('#warn').hide();
 			$('#notify').html(msg).slideDown();
 			setTimeout(function(){
-				$('#notify').slideUp();
-			}, 4000);
+				$('#notify').animate({top: '-50', opacity: '.3'},1000).slideUp();
+			}, 3000);
 
 			$('#notify').on('click', function(ev){
 				ev.preventDefault();
 				$(this).slideUp();
 			})
-			//return Materialize.toast(msg, 4000, 'green lighten-1');
 			
 		},
 		warn: function(msg){
-			//return Materialize.toast(msg, 4000, 'red lighten-1');
+			//Materialize.toast(msg, 4000, 'red lighten-1');
 			$('#notify').hide();
 			$('#warn').hide();
 			$('#warn').html(msg).slideDown();
 			setTimeout(function(){
-				$('#warn').slideUp();
-			}, 4000);
+				$('#warn').animate({top: '-50', opacity: '.3'},1000).slideUp();
+			}, 3000);
 			$('#warn').on('click', function(ev){
 				ev.preventDefault();
 				$(this).slideUp();
@@ -89,7 +85,26 @@
 	};
 
 
-	toast.notify('welcome !!');
+	var auth = function(token){
+		var isAuthenticated = false;
+	  var lock = new PatternLock('#locked',{
+	    onDraw:function(pattern){
+	      lock.checkForPattern(token, function(){
+	      		isAuthenticated = true;
+	          $('#locked').parent().hide();
+	          main(jQuery);
+	          toast.notify('welcome !!');
+	      },function(){
+	      		isAuthenticated = false;
+	          toast.warn("Pattern is not correct");
+	      }); 
+	    }
+		});
+
+		return isAuthenticated;
+
+	};
+
 
 	var initStore = function() {
 		var lenDenData = {};
@@ -114,6 +129,7 @@
 		lenDenData.dena = denaData;
 		lenDenData.lena = lenaData;
 		lenDenData.friends = friends;
+		lenDenData.token = null;
 
 		if(typeof(Storage) !== "undefined") {
 		    // Code for localStorage/sessionStorage.
@@ -197,13 +213,17 @@
 	};
 
 
+	
+
+
+
+
 var main = function($){
+
 		$app = $('#app');
 		var type = 'dena';
 
 	function initView (type) {
-('initView==', type);
-
 
 		$('.grand-total').html('Rs. ' + calculateTotal(null, type).total);
 
@@ -218,11 +238,7 @@ var main = function($){
 		} else{
 			theme = 'red';
 		};
-		
-
-
-
-
+	
 		function appendFriends (){
 			store.load();
 			var arr = store.data[type];
@@ -471,14 +487,44 @@ var main = function($){
 	});
 
 
-	
+	$('.reset-app').on('click', function(ev){
+		ev.preventDefault();
+		$(this).html('working...');
+		localStorage.removeItem('lenDenData');
+		window.location.reload();
+	});
 
 
 
 
 } //main
 
-main(jQuery);
+store.load();
+if (store.data.token == null) {
+	toast.notify('please set a pattern as lock');
+	$('#pattern-msg').html('Please set a pattern as lock'
+		+ '<br/> <span> '+ timeStamp()[0] +' <span> <br/><span> '+ timeStamp()[1] +' </span>');
+	var lock = new PatternLock('#locked',{
+  	onDraw:function(pattern){
+  		if (confirm('Are you sure you want to save this pattern')) {
+  		    
+	  		$('#locked').parent().hide();
+	  		main(jQuery);
+	  		store.data.token = pattern;
+	  		store.update();
+  		} else {
+  			toast.notify('try again');
+  		}
+  	}
+	});  
+} else {
+	$('#pattern-msg').html('Draw pattern to unlock'
+		+ '<br/> <span> '+ timeStamp()[0] +' <span> <br/><span> '+ timeStamp()[1] +' </span>');
+	auth(store.data.token);
+	main(jQuery);
+}
+
+
 
 
 
