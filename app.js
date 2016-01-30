@@ -464,6 +464,8 @@ var main = function($){
 		
 		if (friendName.length > 0) {
 			addFriend(friendName, friendMo);
+			$('.friend-name').val('');
+			$('.friend-no').val('');
 			
 		};	
 	});
@@ -481,8 +483,8 @@ var main = function($){
 		purpose = $purpose.val();
 		if (amount > 0 ) {
 			submitPurpose(uid, purpose, amount, type);
-			$purpose.val() = '';
-			$amount.val() = '';
+			$purpose.val('');
+			$amount.val('');
 			//toast.notify('Dena added succesfully !');
 
 		};
